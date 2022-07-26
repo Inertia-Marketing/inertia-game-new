@@ -1,0 +1,103 @@
+
+.arrNumber {
+    color: white;
+    -webkit-text-stroke: 4px black;
+    font-size: 350px;
+    margin: 0;
+    margin-bottom: -50px;
+}
+
+.arrNumber2 {
+    color: rgb(0, 0, 0);
+}
+
+h3 {
+    color: white;
+    font-size: 2.8rem;
+}
+
+.GameContainer {
+    text-align: center;
+    background: gray;
+}
+
+
+/* ///////////BUTTONS //////////////// */
+.btnHigher {
+    border: 6px solid black;
+    height: 80px;
+    width: 256px;
+    background-color: #da6132;
+    border-radius: 12px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+.btnHigher:hover {
+    border: 6px solid #da6132;
+    height: 80px;
+    width: 256px;
+    background-color: black;
+    border-radius: 12px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.btnLower {
+    border: 6px solid black;
+    height: 80px;
+    width: 256px;
+    background-color: #da6132;
+    border-radius: 12px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+.btnLower:hover {
+    border: 6px solid #da6132;
+    height: 80px;
+    width: 256px;
+    background-color: black;
+    border-radius: 12px;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.stats-holder {
+    display: flex;
+    justify-content: center;
+}
+.stats1 {
+    margin-right: 50px;
+}
+
+/* STRIKE OUT BOX */
+.strikeBox {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    margin-top: 22px;
+}
+/* STRIKE OUT LETTER X */
+.strikeStart {
+    /* color: white; */
+    font-size:45px;
+}
+/* STRIKE OUT = RED LETTER  X*/
+.strikeoutRed {
+    color: red;
+}
+
+.stats2 {
+    margin-left: 50px;
+}
+
+.strikes {
+    margin: 5px;
+}
+
+.h3words {
+    margin-bottom: -45px;
+}
