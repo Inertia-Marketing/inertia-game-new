@@ -6,6 +6,7 @@ function Modal(props) {
     function spanClose() {
         var modalWin = document.getElementById("myModal");
         modalWin.style.display = "none";
+        window.location.reload()
     }
 
     return (
