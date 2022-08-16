@@ -30,6 +30,8 @@ function GameLayout() {
     var currentNumber = arrNums[Math.floor(Math.random() * arrNums.length)];
     var nextNumber = 4;
 
+    const [test, setTest] = useState(arrNums[Math.floor(Math.random() * arrNums.length)]);
+
     //Strike array
     const strikeArr = [
         { id: 0, letter: "X", state: "strikeStart" },
@@ -65,13 +67,14 @@ function GameLayout() {
     // FUNCTION FOR BUTTON LOWER //////////////////////////////////
     function numberLower() {
         nextNumber = next();
-        
+
         console.log('CurrentNumber:', currentNumber);
         if (currentNumber > nextNumber) {
             setScore(score + 10)
             //console.log('CORRECT', "CurrentNumber:", currentNumber);
 
         } else if (currentNumber === nextNumber) {
+            console.log("EQUAL")
             console.log('SAME:', 'currentNumber:', currentNumber, 'nextNumber:', nextNumber);
             nextNumber = next();
             console.log('SAME:', 'currentNumber:', currentNumber, 'nextNumber:', nextNumber);
@@ -113,33 +116,55 @@ function GameLayout() {
     }
 
 
-    // function randomUniqueNum(range, outputCount) {
+    ////////////////////////////////////////////////////////////////////////////
+    const arrayFruit = ["Apple", "Orange", "Cherry", "Banana", "Pear"];
+    const spaceText = document.getElementById('spaceText');
 
-    //     let arr = []; 
-    //     for (let i = 1; i <= range; i++) {
-    //         arr.push(i)
-    //     }
+    const [fruit, setFruit] = useState(arrayFruit);
 
-    //     let result = [];
+    //the next fruit cannot equal the current text content
+    function randomText() {
+        const options = arrayFruit.filter(fruit => fruit !== spaceText.textContent);
+        const randomIndex = Math.floor(Math.random() * options.length);
+        console.log("Random fruit is:", options[randomIndex]);
 
-    //     for (let i = 1; i <= outputCount; i++) {
-    //         const random = Math.floor(Math.random() * (range - i));
-    //         result.push(arr[random]);
-    //         arr[random] = arr[range - i];
-    //     }
+        spaceText.textContent = options[randomIndex];
+    }
 
-    //     return result;
-    // }
-    // console.log(randomUniqueNum(4,4))
+    const items = [1,2,3,4];
 
+    let selectedItemIndex;
 
+    function selectNewOne() {
+        const randomItemIndex = Math.floor(Math.random() * items.length);
+      
+        if (randomItemIndex === selectedItemIndex) {
+          return selectNewOne();
+        }
+      
+        return randomItemIndex;
+      }
+    // for (let i = 0; i < 5; i++) {
+    //     selectedItemIndex = selectNewOne();
+    //     console.log(items[selectedItemIndex]);
+    //   }
+
+    console.log(items[selectNewOne()]);
+
+    // //////////////////////////////////////////////////////////////////////////
 
     return (
         <div className="GameContainer">
 
+            <div id="spaceText">Apple</div>
+            <h2></h2>
+            {/* <h2>{fruit}</h2> */}
+            <button onClick={selectNewOne}>Test</button>
+
             <div className="section-1">
                 <h1 className="arrNumber">{currentNumber}</h1>
                 {/* <h2>{number}</h2> */}
+
                 <h3>The next number will be...</h3>
             </div>
 
@@ -168,7 +193,7 @@ function GameLayout() {
                     {/* SCORE CONTAINER */}
                     <div className="stats2">
                         <button className="btnLower" onClick={numberLower}>LOWER</button>
-
+                        <button className="btnLower" onClick={randomText}>random</button>
                         <h3 className="h3words">Score</h3>
                         <h3>{score}</h3>
 
