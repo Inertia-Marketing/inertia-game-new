@@ -6,8 +6,15 @@
     margin: 0;
     margin-bottom: -50px;
 }
-
 .arrNumber2 {
+    color: white;
+    -webkit-text-stroke: 4px black;
+    font-size: 100px;
+    margin: 0;
+    margin-bottom: -50px;
+}
+
+.arrNumber3 {
     color: rgb(0, 0, 0);
 }
 

@@ -18,18 +18,17 @@ function GameLayout() {
     const [score, setScore] = useState(0);
     const [strike, setStrike] = useState(0);
 
+    //Array Number State, (ie - the big number shown)
+    const [number, setNumber] = useState(0);
+
     //Array of numbers
     // const arrNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     //     21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 
     // Dispaly Random number from the Array of numbers
-    // const currentNum = arrNums[Math.floor(Math.random() * arrNums.length)];
-
     const arrNums = [1, 2, 3, 4]
-    var currentNum = arrNums[Math.floor(Math.random() * arrNums.length)];
-   
-    //Array Number State, (ie - the big number shown)
-    const [num, setNum] = useState(0);
+    var currentNumber = arrNums[Math.floor(Math.random() * arrNums.length)];
+    var nextNumber = 4;
 
     //Strike array
     const strikeArr = [
@@ -44,48 +43,49 @@ function GameLayout() {
         return arrNums[index];
     }
 
-   
-    var nextNum = 5;
-    // FUNCTION FOR BUTTON LOWER
-    function numberLower() {
-        console.log('currentNum2 Star:', currentNum)
 
-        nextNum = next();
-        if (currentNum > nextNum) {
-            setScore(score + 10)
-            console.log('CORRECT', "CurrentNum2:", currentNum);
-
-        } else if (currentNum === nextNum){
-            console.log("PICK AGAIN:", currentNum);
-        } else {
-            setStrike(strike + 1);
-            addStrike();
-            console.log('WRONG', strike, "CurrentNum2:", currentNum);
-            if (strike === 2) {
-                gameOver();
-            }
-        }
-        currentNum = nextNum;
-    }
-
-    // FUNCTION FOR BUTTON HIGHER
+    // FUNCTION FOR BUTTON HIGHER //////////////////////////////////
     function numberHigher() {
-        let nextNum = next();
-        if (currentNum < nextNum) {
+        nextNumber = next();
+        //setNumber(currentNumber);
+        //if (currentNumber < nextNumber) {
+        if (currentNumber < nextNumber) {
             setScore(score + 10)
-            console.log('CORRECT HIGH')
+            console.log('CORRECT HIGH', 'CurrentNum2:', currentNumber);
+        } else if (currentNumber === nextNumber) {
+            console.log("PICK AGAIN HIGH:", currentNumber);
         } else {
             setStrike(strike + 1);
             addStrike();
-            console.log('WRONG HIGH')
-            console.log(strike)
-            if (strike === 2) {
-                gameOver();
-            }
+            console.log('WRONG STRIKE HIGH:', strike, "CurrentNum2:", currentNumber);
         }
+        currentNumber = nextNumber;
     }
 
-    // FUNCTION AND INFO FOR ADDING A STRIKE
+    // FUNCTION FOR BUTTON LOWER //////////////////////////////////
+    function numberLower() {
+        nextNumber = next();
+        
+        console.log('CurrentNumber:', currentNumber);
+        if (currentNumber > nextNumber) {
+            setScore(score + 10)
+            //console.log('CORRECT', "CurrentNumber:", currentNumber);
+
+        } else if (currentNumber === nextNumber) {
+            console.log('SAME:', 'currentNumber:', currentNumber, 'nextNumber:', nextNumber);
+            nextNumber = next();
+            console.log('SAME:', 'currentNumber:', currentNumber, 'nextNumber:', nextNumber);
+        } else {
+            setStrike(strike + 1);
+            // addStrike();
+            //console.log('WRONG STRIKE:', strike, "CurrentNumber:", currentNumber);
+        }
+        currentNumber = nextNumber;
+        // console.log('nextNumber:', nextNumber);
+        // setNumber(currentNumber);
+    }
+
+    // FUNCTION AND INFO FOR ADDING A STRIKE ////////////////////////
     const [cards, setCards] = useState(strikeArr);
     var testArr = [0, 1, 2];
 
@@ -113,14 +113,33 @@ function GameLayout() {
     }
 
 
+    // function randomUniqueNum(range, outputCount) {
+
+    //     let arr = []; 
+    //     for (let i = 1; i <= range; i++) {
+    //         arr.push(i)
+    //     }
+
+    //     let result = [];
+
+    //     for (let i = 1; i <= outputCount; i++) {
+    //         const random = Math.floor(Math.random() * (range - i));
+    //         result.push(arr[random]);
+    //         arr[random] = arr[range - i];
+    //     }
+
+    //     return result;
+    // }
+    // console.log(randomUniqueNum(4,4))
+
+
+
     return (
         <div className="GameContainer">
 
             <div className="section-1">
-                {/* <h1 className="arrNumber">{currentNum}</h1> */}
-                <h1 className="arrNumber">{currentNum}</h1>
-
-                <h3>{num}</h3>
+                <h1 className="arrNumber">{currentNumber}</h1>
+                {/* <h2>{number}</h2> */}
                 <h3>The next number will be...</h3>
             </div>
 
@@ -149,7 +168,6 @@ function GameLayout() {
                     {/* SCORE CONTAINER */}
                     <div className="stats2">
                         <button className="btnLower" onClick={numberLower}>LOWER</button>
-                        {/* <button className="btnLower" onClick={addStrike}>Test</button> */}
 
                         <h3 className="h3words">Score</h3>
                         <h3>{score}</h3>
